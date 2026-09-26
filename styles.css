@@ -25,21 +25,45 @@ button, a { color: inherit; }
   margin: 0 auto;
   padding: 46px var(--gutter) 0;
 }
-.title-block { max-width: 1180px; }
-.project-label {
-  margin: 0 0 12px;
-  font-size: 13px;
-  line-height: 1;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+.title-block {
+  display: inline-block;
+  max-width: 100%;
 }
-h1 {
+
+.project-title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
   margin: 0;
-  max-width: 1150px;
-  font-size: clamp(32px, 4.2vw, 62px);
-  font-weight: 500;
-  line-height: 1.08;
-  letter-spacing: -.025em;
+  font-weight: 400;
+}
+
+.project-title-zh {
+  display: block;
+  white-space: nowrap;
+  font-family:
+    KaiTi,
+    "Kaiti SC",
+    STKaiti,
+    "楷体",
+    serif;
+  font-size: 50pt;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.project-title-en {
+  display: block;
+  margin-top: 12px;
+  white-space: nowrap;
+  font-family:
+    Garamond,
+    "EB Garamond",
+    "Times New Roman",
+    serif;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: .005em;
 }
 
 .tab-bar {
@@ -194,8 +218,14 @@ h1 {
 }
 @media (max-width: 720px) {
   .site-header { padding-top: 28px; }
-  .project-label { font-size: 11px; }
-  h1 { font-size: 33px; }
+
+  .project-title-zh {
+    font-size: 34pt;
+  }
+
+  .project-title-en {
+    margin-top: 8px;
+  }
   .tab-bar { margin-top: 28px; }
   .tab-button { padding-inline: 16px; font-size: 13px; }
   .site-main { padding-top: 30px; }
