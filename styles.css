@@ -356,3 +356,100 @@ button, a { color: inherit; }
     padding: 24px 20px;
   }
 }
+
+/* =========================================================
+   STEP 2 — Digital workspace background + pale file tabs
+   Paste this block at the VERY END of styles.css
+   ========================================================= */
+
+/* 1) Subtle digital-workspace background */
+body {
+  background-color: #fbfbf8;
+  background-image:
+    linear-gradient(rgba(72, 84, 94, 0.032) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72, 84, 94, 0.032) 1px, transparent 1px),
+    linear-gradient(rgba(72, 84, 94, 0.052) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72, 84, 94, 0.052) 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    120px 120px,
+    120px 120px;
+  background-position: -1px -1px;
+}
+
+/* Keep the header visually light over the workspace grid */
+.site-header {
+  position: relative;
+}
+
+/* A quiet white workspace sheet behind page content */
+.tab-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(17, 17, 17, 0.10);
+  border-radius: 2px;
+  padding: clamp(28px, 3.2vw, 48px);
+  box-shadow:
+    0 16px 40px rgba(41, 48, 54, 0.045),
+    0 1px 0 rgba(255, 255, 255, 0.92) inset;
+}
+
+/* 2) File-folder / bookmark style menu bar */
+.tab-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  width: 100%;
+  margin-top: 42px;
+  padding: 12px 10px 0;
+  border-top: 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.28);
+  background: transparent;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab-button,
+.tab-button:first-child {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 10px 22px 9px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  color: #111111;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 -4px 12px rgba(40, 45, 50, 0.025) inset;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Three deliberately pale bookmark tints */
+.tab-button:nth-child(1) {
+  background: #f3eee3; /* warm paper */
+}
+
+.tab-button:nth-child(2) {
+  background: #eaf0f1; /* pale blue-gray */
+}
+
+.tab-button:nth-child(3) {
+  background: #edf0e7; /* pale sage */
+}
+
+.tab-button:hover,
+.tab-button:focus-visible {
+  color: #111111;
+  filter: brightness(0.985);
+  outline: none;
