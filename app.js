@@ -1,99 +1,151 @@
 (() => {
-  const buttons = Array.from(document.querySelectorAll('[data-tab]'));
-  const panels = Array.from(document.querySelectorAll('[data-panel]'));
-  const validTabs = new Set(buttons.map((button) => button.dataset.tab));
+  "use strict";
+
+  function setupTabs() {
+    const buttons = Array.from(
+      document.querySelectorAll(".tab-button[data-tab]")
+    );
+    const panels = Array.from(
+      document.querySelectorAll(".tab-panel[data-panel]")
+    );
+
+    if (!buttons.length || !panels.length) {
+      console.warn("Tab controls or tab panels were not found.");
+      return;
+    }
+
+    const validTabs = new Set(
+      buttons.map((button) => button.dataset.tab)
+    );
+
+    function activateTab(tabName, updateHash = true) {
+      const nextTab = validTabs.has(tabName) ? tabName : "about";
+
+      buttons.forEach((button) => {
+        const selected = button.dataset.tab === nextTab;
+        button.classList.toggle("is-active", selected);
+        button.setAttribute("aria-selected", String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== nextTab;
+      });
+
+      if (updateHash) {
+        window.history.replaceState(null, "", `#${nextTab}`);
+      }
+
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
+    buttons.forEach((button, index) => {
+      button.addEventListener("click", () => {
+        activateTab(button.dataset.tab);
+      });
+
+      button.addEventListener("keydown", (event) => {
+        const supportedKeys = [
+          "ArrowLeft",
+          "ArrowRight",
+          "Home",
+          "End"
+        ];
+
+        if (!supportedKeys.includes(event.key)) return;
+        event.preventDefault();
+
+        let targetIndex = index;
+
+        if (event.key === "ArrowLeft") {
+          targetIndex = (index - 1 + buttons.length) % buttons.length;
+        }
+
+        if (event.key === "ArrowRight") {
+          targetIndex = (index + 1) % buttons.length;
+        }
+
+        if (event.key === "Home") targetIndex = 0;
+        if (event.key === "End") targetIndex = buttons.length - 1;
+
+        buttons[targetIndex].focus();
+        activateTab(buttons[targetIndex].dataset.tab);
+      });
+    });
+
+    window.addEventListener("hashchange", () => {
+      activateTab(window.location.hash.slice(1), false);
+    });
+
+    activateTab(
+      window.location.hash.slice(1) || "about",
+      false
+    );
+  }
+
   function fitEnglishTitle() {
-  const chineseTitle =
-    document.querySelector(".project-title-zh");
+    const chineseTitle = document.querySelector(".project-title-zh");
+    const englishTitle = document.querySelector(".project-title-en");
 
-  const englishTitle =
-    document.querySelector(".project-title-en");
+    if (!chineseTitle || !englishTitle) return;
 
-  if (!chineseTitle || !englishTitle) return;
+    const targetWidth = chineseTitle.getBoundingClientRect().width;
+    if (!targetWidth) return;
 
-  const targetWidth =
-    chineseTitle.getBoundingClientRect().width;
+    englishTitle.style.width = "auto";
 
-  if (!targetWidth) return;
+    let low = 10;
+    let high = 42;
 
-  englishTitle.style.width = "auto";
+    for (let i = 0; i < 18; i += 1) {
+      const midpoint = (low + high) / 2;
+      englishTitle.style.fontSize = `${midpoint}px`;
 
-  let low = 10;
-  let high = 42;
+      const currentWidth =
+        englishTitle.getBoundingClientRect().width;
 
-  for (let i = 0; i < 18; i += 1) {
-    const midpoint = (low + high) / 2;
+      if (currentWidth <= targetWidth) {
+        low = midpoint;
+      } else {
+        high = midpoint;
+      }
+    }
 
-    englishTitle.style.fontSize =
-      `${midpoint}px`;
+    englishTitle.style.fontSize = `${low}px`;
+    englishTitle.style.width = `${targetWidth}px`;
+    englishTitle.style.textAlign = "center";
+  }
 
-    const currentWidth =
-      englishTitle.getBoundingClientRect().width;
+  function setupTitleFitting() {
+    const scheduleFit = () => {
+      window.requestAnimationFrame(() => {
+        try {
+          fitEnglishTitle();
+        } catch (error) {
+          console.warn("Title fitting failed:", error);
+        }
+      });
+    };
 
-    if (currentWidth <= targetWidth) {
-      low = midpoint;
+    window.addEventListener("resize", scheduleFit);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(scheduleFit).catch(scheduleFit);
     } else {
-      high = midpoint;
+      scheduleFit();
     }
   }
 
-  englishTitle.style.fontSize = `${low}px`;
-  englishTitle.style.width = `${targetWidth}px`;
-  englishTitle.style.textAlign = "center";
-}
-
-function scheduleTitleFit() {
-  window.requestAnimationFrame(fitEnglishTitle);
-}
-
-  function activateTab(tabName, updateHash = true) {
-    const nextTab = validTabs.has(tabName) ? tabName : 'about';
-    buttons.forEach((button) => {
-      const selected = button.dataset.tab === nextTab;
-      button.classList.toggle('is-active', selected);
-      button.setAttribute('aria-selected', String(selected));
-      button.tabIndex = selected ? 0 : -1;
-    });
-    panels.forEach((panel) => { panel.hidden = panel.dataset.panel !== nextTab; });
-    if (updateHash) history.replaceState(null, '', `#${nextTab}`);
-    window.scrollTo({ top: 0, behavior: 'auto' });
+  function init() {
+    // Initialize tab navigation first, so a title-fitting problem
+    // can never disable Exposition or Reference.
+    setupTabs();
+    setupTitleFitting();
   }
 
-  buttons.forEach((button, index) => {
-    button.addEventListener('click', () => activateTab(button.dataset.tab));
-    button.addEventListener('keydown', (event) => {
-      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-      event.preventDefault();
-      let targetIndex = index;
-      if (event.key === 'ArrowLeft') targetIndex = (index - 1 + buttons.length) % buttons.length;
-      if (event.key === 'ArrowRight') targetIndex = (index + 1) % buttons.length;
-      if (event.key === 'Home') targetIndex = 0;
-      if (event.key === 'End') targetIndex = buttons.length - 1;
-      buttons[targetIndex].focus();
-      activateTab(buttons[targetIndex].dataset.tab);
-    });
-  });
-
-window.addEventListener(
-  "hashchange",
-  () => activateTab(
-    window.location.hash.slice(1),
-    false
-  )
-);
-
-window.addEventListener(
-  "resize",
-  scheduleTitleFit
-);
-
-if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(scheduleTitleFit);
-} else {
-  scheduleTitleFit();
-}
-
-activateTab(
-  window.location.hash.slice(1) || "about",
-  false
-);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
