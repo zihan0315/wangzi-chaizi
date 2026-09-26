@@ -1,0 +1,210 @@
+:root {
+  --black: #111111;
+  --white: #ffffff;
+  --gray-1: #f2f2f2;
+  --gray-3: #666666;
+  --page-width: 1500px;
+  --gutter: clamp(20px, 4vw, 64px);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--black);
+  background: var(--white);
+  font-family: Arial, Helvetica, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button, a { color: inherit; }
+
+.site-header {
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+  padding: 46px var(--gutter) 0;
+}
+.title-block { max-width: 1180px; }
+.project-label {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  max-width: 1150px;
+  font-size: clamp(32px, 4.2vw, 62px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -.025em;
+}
+
+.tab-bar {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 42px;
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.tab-button {
+  flex: 0 0 auto;
+  min-height: 48px;
+  padding: 11px 24px;
+  border: 0;
+  border-right: 1px solid var(--black);
+  border-radius: 0;
+  background: var(--white);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tab-button:first-child { border-left: 1px solid var(--black); }
+.tab-button:hover, .tab-button:focus-visible { background: var(--gray-1); outline: none; }
+.tab-button.is-active { background: var(--black); color: var(--white); }
+
+.site-main {
+  width: min(100%, var(--page-width));
+  min-height: 66vh;
+  margin: 0 auto;
+  padding: 42px var(--gutter) 76px;
+}
+.tab-panel:focus { outline: none; }
+.tab-panel[hidden] { display: none; }
+.tab-panel h2 {
+  margin: 0 0 28px;
+  font-size: clamp(24px, 2.1vw, 34px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.about-panel { max-width: 1080px; }
+.about-copy { max-width: 970px; }
+.about-copy p {
+  margin: 0;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.72;
+  letter-spacing: .003em;
+}
+.section-intro {
+  max-width: 760px;
+  margin: -12px 0 38px;
+  color: var(--gray-3);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.exposition-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(26px, 4vw, 66px);
+  row-gap: 58px;
+  align-items: start;
+}
+.exposition-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(150px, .78fr);
+  align-items: start;
+  gap: clamp(16px, 2vw, 28px);
+  padding-top: 16px;
+  border-top: 1px solid var(--black);
+}
+.artwork-frame { margin: 0; background: var(--white); }
+.artwork-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  background: var(--white);
+}
+.work-text { min-width: 0; padding-top: 2px; }
+.work-text h3 {
+  margin: 0 0 22px;
+  font-family: SimHei, "Heiti SC", "Noto Sans CJK SC", "PingFang SC", sans-serif;
+  font-size: 36pt;
+  font-weight: 700;
+  line-height: 1;
+}
+.work-text p {
+  margin: 0;
+  font-family: SimSun, "Songti SC", STSong, "Noto Serif CJK SC", serif;
+  font-size: 13pt;
+  line-height: 1.72;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+.reference-heading-row {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+.reference-heading-row h2 { margin-bottom: 8px; }
+.reference-heading-row p {
+  margin: 0;
+  font-family: SimSun, "Songti SC", STSong, "Noto Serif CJK SC", serif;
+  font-size: 15pt;
+}
+.pdf-link {
+  flex: 0 0 auto;
+  padding: 10px 14px;
+  border: 1px solid var(--black);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.pdf-link:hover, .pdf-link:focus-visible { background: var(--black); color: var(--white); outline: none; }
+.pdf-shell {
+  width: 100%;
+  height: min(82vh, 1050px);
+  min-height: 620px;
+  border: 1px solid var(--black);
+  background: var(--gray-1);
+}
+.pdf-object { display: block; width: 100%; height: 100%; border: 0; }
+.mobile-pdf-note { margin: 12px 0 0; color: var(--gray-3); font-size: 12px; line-height: 1.5; }
+
+.site-footer {
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+  padding: 0 var(--gutter) 30px;
+}
+.site-footer p {
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--black);
+  color: var(--gray-3);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+@media (max-width: 1120px) {
+  .exposition-grid { grid-template-columns: 1fr; }
+  .exposition-item { grid-template-columns: minmax(0, 1.35fr) minmax(210px, .65fr); }
+}
+@media (max-width: 720px) {
+  .site-header { padding-top: 28px; }
+  .project-label { font-size: 11px; }
+  h1 { font-size: 33px; }
+  .tab-bar { margin-top: 28px; }
+  .tab-button { padding-inline: 16px; font-size: 13px; }
+  .site-main { padding-top: 30px; }
+  .about-copy p { font-size: 17px; }
+  .exposition-item { grid-template-columns: 1fr; gap: 16px; }
+  .work-text { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: start; gap: 16px; }
+  .work-text h3 { margin: 0; font-size: 32pt; }
+  .work-text p { font-size: 12.5pt; }
+  .reference-heading-row { align-items: start; flex-direction: column; }
+  .pdf-shell { height: 72vh; min-height: 480px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

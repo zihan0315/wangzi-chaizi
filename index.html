@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="望字拆字 - Gazing upon and Dissecting Chinese Characters, a digital illustration and artistic research project." />
+  <title>望字拆字 - Gazing upon and Dissecting Chinese Characters</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="title-block">
+      <p class="project-label">Project name:</p>
+      <h1>望字拆字 - Gazing upon and Dissecting Chinese Characters</h1>
+    </div>
+
+    <nav class="tab-bar" aria-label="Project sections" role="tablist">
+      <button class="tab-button is-active" id="tab-about" type="button" role="tab" aria-selected="true" aria-controls="panel-about" data-tab="about">About this Project</button>
+      <button class="tab-button" id="tab-exposition" type="button" role="tab" aria-selected="false" aria-controls="panel-exposition" data-tab="exposition">Exposition</button>
+      <button class="tab-button" id="tab-reference" type="button" role="tab" aria-selected="false" aria-controls="panel-reference" data-tab="reference">Reference: Chen Cun’s Essay</button>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <section class="tab-panel about-panel" id="panel-about" role="tabpanel" tabindex="0" aria-labelledby="tab-about" data-panel="about">
+      <h2>About this Project</h2>
+      <div class="about-copy">
+        <p>This project explores how Chinese characters exist within, and can be approached through, the bits and bytes of the digital grid. The title is derived from an essay by Chinese avant-garde writer Chen Cun (陈村). Using InkScape, an open-source vector graphics editor, and Generative AI tools like ChatGPT and Kimi, this project illustrates Chinese characters based on Chen Cun’s dissection and reinterpretation of them. Proposing that Chen’s essay critically reflects on the use of Chinese Input Method Editors (IMEs) in an increasingly digitized Chinese-language creative environment, this project employs digital illustration to examine how digitization influences our perception of ideographic Chinese characters. It invites viewers to “gaze upon” the characters, attempt to recognize them, and consider the future of Chinese writing in the digital age. Drawing inspiration from ShaoLan Hsueh’s Chineasy, it also aims to serve as a pedagogical tool in the near future.</p>
+      </div>
+    </section>
+
+    <section class="tab-panel exposition-panel" id="panel-exposition" role="tabpanel" tabindex="0" aria-labelledby="tab-exposition" data-panel="exposition" hidden>
+      <h2>Exposition</h2>
+      <p class="section-intro">Five preliminary visual studies, presented in the order in which the characters appear in Chen Cun’s essay.</p>
+
+      <div class="exposition-grid">
+        <article class="exposition-item">
+          <figure class="artwork-frame"><img src="./assets/images/C001_yi.webp" alt="Conceptual illustration for the Chinese character 一" loading="eager" /></figure>
+          <div class="work-text"><h3 lang="zh-Hans">一</h3><p lang="zh-Hans">在中国人看来，一是基本的、起初的。所以平，所以深长，道生一。一生二，二生三，三生万物。西人的1是站着的。不牢靠但较有动感。一，它允许二三叠起来，有积累的快乐。西人的1，是数字的魔术，所有的阿拉伯数字，都是1的变体。</p></div>
+        </article>
+
+        <article class="exposition-item">
+          <figure class="artwork-frame"><img src="./assets/images/C002_ren.webp" alt="Conceptual illustration for the Chinese character 人" loading="lazy" /></figure>
+          <div class="work-text"><h3 lang="zh-Hans">人</h3><p lang="zh-Hans">几乎没有比它更简单的字了。一撇一捺，是个稍息的姿势。人的头被忽略了，手被忽略了。我们最看重的东西居然可以不算。造字的时候，仓颉注重的是人的直立，这是人的最显著的特征了。人，很舒展，写起来特别舒服。</p></div>
+        </article>
+
+        <article class="exposition-item">
+          <figure class="artwork-frame"><img src="./assets/images/C003_huo.webp" alt="Conceptual illustration for the Chinese character 火" loading="lazy" /></figure>
+          <div class="work-text"><h3 lang="zh-Hans">火</h3><p lang="zh-Hans">在人的耳朵那儿弄出两点，代表两朵小火苗。真是喜气洋洋的。那两点悬在半空，上不巴天，下不着地，飘飘忽忽的，很传神。</p></div>
+        </article>
+
+        <article class="exposition-item">
+          <figure class="artwork-frame"><img src="./assets/images/C004_da.webp" alt="Conceptual illustration for the Chinese character 大" loading="lazy" /></figure>
+          <div class="work-text"><h3 lang="zh-Hans">大</h3><p lang="zh-Hans">人的两手侧平举，就大了。大总是源于扩张。似乎是人伸懒腰的样子。</p></div>
+        </article>
+
+        <article class="exposition-item">
+          <figure class="artwork-frame"><img src="./assets/images/C005_qi.webp" alt="Conceptual illustration for the Chinese character 妻" loading="lazy" /></figure>
+          <div class="work-text"><h3 lang="zh-Hans">妻</h3><p lang="zh-Hans">女的上面是事啊。女人的头上顶着那么多的事情，一眼望过去数也数不清。</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tab-panel reference-panel" id="panel-reference" role="tabpanel" tabindex="0" aria-labelledby="tab-reference" data-panel="reference" hidden>
+      <div class="reference-heading-row">
+        <div><h2>Reference: Chen Cun’s Essay</h2><p>陈村：《望字拆字》</p></div>
+        <a class="pdf-link" href="./assets/reference/Chen_Cun_Wangzi_Chaizi.pdf" target="_blank" rel="noopener">Open PDF in a new tab</a>
+      </div>
+      <div class="pdf-shell">
+        <object class="pdf-object" data="./assets/reference/Chen_Cun_Wangzi_Chaizi.pdf#view=FitH" type="application/pdf" aria-label="Chen Cun's essay 望字拆字">
+          <p>Your browser cannot display the embedded PDF. <a href="./assets/reference/Chen_Cun_Wangzi_Chaizi.pdf">Open or download the essay PDF.</a></p>
+        </object>
+      </div>
+      <p class="mobile-pdf-note">On some mobile browsers, the PDF opens more reliably in a separate tab using the link above.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Work in progress. Visual interpretations by the project author; essay text and scan attributed to Chen Cun.</p></footer>
+</body>
+</html>
