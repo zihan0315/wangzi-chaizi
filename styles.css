@@ -238,3 +238,121 @@ button, a { color: inherit; }
   .pdf-shell { height: 72vh; min-height: 480px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* 2) File-folder / bookmark style menu bar */
+.tab-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  width: 100%;
+  margin-top: 42px;
+  padding: 12px 10px 0;
+  border-top: 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.28);
+  background: transparent;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab-button,
+.tab-button:first-child {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 10px 22px 9px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  color: #111111;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 -4px 12px rgba(40, 45, 50, 0.025) inset;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+/* Three deliberately pale bookmark tints */
+.tab-button:nth-child(1) {
+  background: #f3eee3; /* warm paper */
+}
+
+.tab-button:nth-child(2) {
+  background: #eaf0f1; /* pale blue-gray */
+}
+
+.tab-button:nth-child(3) {
+  background: #edf0e7; /* pale sage */
+}
+
+.tab-button:hover,
+.tab-button:focus-visible {
+  color: #111111;
+  filter: brightness(0.985);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+/* Active tab stays light, not black, so black typography remains dominant */
+.tab-button.is-active {
+  color: #111111;
+  background: #fffdf8;
+  border-color: rgba(17, 17, 17, 0.28);
+  border-bottom: 1px solid #fffdf8;
+  margin-bottom: -1px;
+  transform: translateY(-3px);
+  box-shadow:
+    0 -3px 12px rgba(40, 45, 50, 0.055),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset;
+}
+
+/* Optional tiny 'index-card' accent along the top edge */
+.tab-button::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  top: 5px;
+  height: 1px;
+  background: rgba(17, 17, 17, 0.07);
+}
+
+/* Keep text and image areas clean */
+.artwork-frame,
+.artwork-frame img {
+  background: #ffffff;
+}
+
+/* Reference PDF still reads as a white workspace sheet */
+.pdf-shell {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+/* Mobile: preserve the tab metaphor while allowing horizontal scroll */
+@media (max-width: 720px) {
+  .tab-bar {
+    margin-top: 28px;
+    gap: 5px;
+    padding-inline: 4px;
+  }
+
+  .tab-button,
+  .tab-button:first-child {
+    min-height: 42px;
+    padding: 9px 15px 8px;
+    font-size: 13px;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .tab-panel {
+    padding: 24px 20px;
+  }
+}
