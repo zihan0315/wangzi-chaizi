@@ -108,6 +108,71 @@ input:disabled { cursor:default;opacity:.42; }
   .ip-reading { grid-template-columns:1fr;gap:20px; } .ip-footer { display:block;line-height:2; } .ip-reading blockquote { font-size:13pt; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none!important;animation:none!important; } }
+/* CHEN CUN LETTER PAPER — START */
+
+.ip-reading {
+  align-items: start;
+}
+
+/* 只给左侧的陈村原文区添加信纸底框 */
+.ip-reading > section:first-child {
+  position: relative;
+  min-width: 0;
+  padding: 22px 24px 24px 44px;
+  background-color: #fffcf3;
+  border: 1px solid #ded6c4;
+  border-radius: 3px;
+  box-shadow: 0 8px 24px rgba(40, 36, 27, 0.05);
+}
+
+/* 信纸左侧的淡红色边线 */
+.ip-reading > section:first-child::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 20px;
+  bottom: 20px;
+  width: 1px;
+  background: rgba(182, 61, 55, 0.22);
+  pointer-events: none;
+}
+
+/* 保留原文标题，调整其与正文之间的留白 */
+#ip-quote-title {
+  margin: 0 0 12px;
+  color: #514b40;
+}
+
+/* 保留原有宋体风格和 13pt 字号，增加淡横线 */
+#ip-quote {
+  margin: 0;
+  padding: 0;
+  color: #171c1a;
+  line-height: 1.8em;
+  min-height: 5.4em;
+  overflow-wrap: anywhere;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(1.8em - 1px),
+    rgba(91, 115, 143, 0.16) calc(1.8em - 1px),
+    rgba(91, 115, 143, 0.16) 1.8em
+  );
+}
+
+/* 手机端缩小内边距，给中文正文保留更多宽度 */
+@media (max-width: 760px) {
+  .ip-reading > section:first-child {
+    padding: 20px 18px 22px 34px;
+  }
+
+  .ip-reading > section:first-child::before {
+    left: 18px;
+  }
+}
+
+/* CHEN CUN LETTER PAPER — END */
 </style></head><body>
 <a class="ip-skip" href="#ip-workspace">Skip to the interactive viewer</a>
 <div class="ip-shell">
